@@ -1,7 +1,9 @@
+const URL_BASE = "http://localhost:3000";
+
 const api = {
   async buscarPensamentos() {
     try {
-      const response = await fetch("http://localhost:3000/pensamentos");
+      const response = await fetch(`${URL_BASE}/pensamentos`);
       return await response.json();
     } catch (error) {
       console.error("Erro ao buscar pensamentos:", error);
@@ -10,7 +12,7 @@ const api = {
   },
   async salvarPensamento(pensamento) {
     try {
-      const response = await fetch("http://localhost:3000/pensamentos", {
+      const response = await fetch(`${URL_BASE}/pensamentos`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,7 +27,7 @@ const api = {
   },
   async buscarPensamento(id) {
     try {
-      const response = await fetch(`http://localhost:3000/pensamentos/${id}`);
+      const response = await fetch(`${URL_BASE}/pensamentos/${id}`);
       return await response.json();
     } catch (error) {
       console.error("Erro ao buscar pensamento:", error);
@@ -34,16 +36,13 @@ const api = {
   },
   async atualizarPensamento(pensamento) {
     try {
-      const response = await fetch(
-        `http://localhost:3000/pensamentos/${pensamento.id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(pensamento),
-        }
-      );
+      const response = await fetch(`${URL_BASE}/pensamentos/${pensamento.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(pensamento),
+      });
       return await response.json();
     } catch (error) {
       console.error("Erro ao atualizar pensamento:", error);
@@ -52,7 +51,7 @@ const api = {
   },
   async excluirPensamento(id) {
     try {
-      const response = await fetch(`http://localhost:3000/pensamentos/${id}`, {
+      const response = await fetch(`${URL_BASE}/pensamentos/${id}`, {
         method: "DELETE",
       });
       return await response.json();
