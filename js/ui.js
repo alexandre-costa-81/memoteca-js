@@ -49,9 +49,26 @@ const ui = {
     iconeEditar.alt = "Editar";
     botaoEditar.appendChild(iconeEditar);
 
+    const botaoExcluir = document.createElement("button");
+    botaoExcluir.classList.add("botao-excluir");
+    botaoExcluir.addEventListener("click", async () => {
+      try {
+        await api.excluirPensamento(pensamento.id);
+        ui.renderizarPensamentos();
+      } catch (error) {
+        console.error("Erro ao excluir pensamento: ", error);
+      }
+    });
+
+    const iconeExcluir = document.createElement("img");
+    iconeExcluir.src = "assets/imagens/icone-excluir.png";
+    iconeExcluir.alt = "Excluir";
+    botaoExcluir.appendChild(iconeExcluir);
+
     const icones = document.createElement("div");
     icones.classList.add("icones");
     icones.appendChild(botaoEditar);
+    icones.appendChild(botaoExcluir);
 
     li.appendChild(iconeAspas);
     li.appendChild(pensamentoConteudo);
